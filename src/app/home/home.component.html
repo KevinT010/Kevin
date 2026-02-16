@@ -160,59 +160,103 @@
 </section>
 <div class="mt-24"></div>
 
-<section class="px-8 lg:px-60 mb-24" id="2">
-  <div class="flex gap-8">
-    <!-- Skills Card -->
-    <div class="rounded-2xl p-8 w-72 shadow-lg"
-         style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255, 255, 255, 0.03) 100%); backdrop-filter: blur(8px); box-shadow: 0 4px 24px rgba(41, 7, 51, 0.08);">
-      <div class="grid grid-cols-4 justify-items-center">
-        <h1 class="text-3xl text-white font-bold mb-4 col-span-4 justify-self-start">Skills</h1>
-        <div *ngFor="let skill of skills" (click)="selectSkill(skill)"
-             class="cursor-pointer hover:scale-110 transition rounded-lg p-1 mb-2"
-             [ngClass]="{
-               'hover:bg-white/10': true,
-               'bg-white/10': selectedSkill?.skill === skill.skill
-             }">
-          <img [src]="skill.icon" [alt]="skill.skill" class="w-10 h-9" />
-        </div>
-      </div>
-    </div>
+<section class="px-8 lg:px-60 py-20 overflow-hidden text-white" id="2">
 
-    <!-- Skill Details -->
-    <div *ngIf="selectedSkill"
-         class="rounded-2xl p-8 flex-1 shadow-lg flex flex-col"
-         style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255, 255, 255, 0.03) 100%); backdrop-filter: blur(8px); box-shadow: 0 4px 24px rgba(41, 7, 51, 0.08);">
-      <div>
-        <div class="flex items-center gap-4 mb-4">
-          <img [src]="selectedSkill.icon" [alt]="selectedSkill.skill" class="w-10 h-9" />
-          <h1 class="text-3xl text-white font-bold">
-            {{ selectedSkill.skill }}
-          </h1>
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 max-w-7xl mx-auto items-center">
+
+        <div class="flex-1 space-y-8">
+
+            <div class="flex gap-4">
+                <div>
+                    <h2 class="text-4xl lg:text-5xl font-bold leading-tight">
+                        My programming<br>
+                        {{ currentTitle }}
+                    </h2>
+                </div>
+            </div>
+
+            <p class="text-gray-400 text-lg leading-relaxed max-w-md">
+                I develop simple, intuitive and responsive user interfaces that help users get things done with less
+                effort.
+            </p>
+
+            <div class=" inline-flex flex-wrap justify-center rounded-3xl sm:rounded-full p-1.5 border border-white/5 shadow-inner"
+                style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255, 255, 255, 0.03) 100%);">
+
+                <button (click)="setTab('language')"
+                    class="px-6 py-2.5 rounded-full font-medium transition-all duration-300 text-sm sm:text-base"
+                    [class.bg-gradient-to-r]="currentTab === 'language'"
+                    [class.from-[#8b5cf6]]="currentTab === 'language'" [class.to-[#c084fc]]="currentTab === 'language'"
+                    [class.text-white]="currentTab === 'language'" [class.text-gray-400]="currentTab !== 'language'">
+                    Languages
+                </button>
+
+                <button (click)="setTab('framework')"
+                    class="px-6 py-2.5 rounded-full font-medium transition-all duration-300 text-sm sm:text-base"
+                    [class.bg-gradient-to-r]="currentTab === 'framework'"
+                    [class.from-[#8b5cf6]]="currentTab === 'framework'"
+                    [class.to-[#c084fc]]="currentTab === 'framework'" [class.text-white]="currentTab === 'framework'"
+                    [class.text-gray-400]="currentTab !== 'framework'">
+                    Frameworks
+                </button>
+
+                <button (click)="setTab('tool')"
+                    class="px-6 py-2.5 rounded-full font-medium transition-all duration-300 text-sm sm:text-base"
+                    [class.bg-gradient-to-r]="currentTab === 'tool'" [class.from-[#8b5cf6]]="currentTab === 'tool'"
+                    [class.to-[#c084fc]]="currentTab === 'tool'" [class.text-white]="currentTab === 'tool'"
+                    [class.text-gray-400]="currentTab !== 'tool'">
+                    Tools
+                </button>
+
+            </div>
         </div>
-        <p class="text-gray-300">{{ selectedSkill.description }}</p>
-      </div>
-      <footer *ngIf="selectedSkill.startDate" class="mt-8 text-gray-400 text-sm text-right mt-auto">
-        Started: {{ selectedSkill.startDate }}
-      </footer>
+
+        <div class="flex-1 w-full">
+    <div class="flex flex-wrap gap-5 justify-center lg:justify-end min-h-[300px] content-start">
+
+        @for (item of filteredItems; track item.skill) {
+
+        <div (click)="selectSkill(item)" class="group w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center cursor-pointer 
+              transition-all duration-500 ease-in-out border border-white/5
+              hover:!scale-110 hover:shadow-xl hover:z-10 relative"
+            [class.border-[#d9834f]]="selectedSkill === item" 
+            [class.bg-white-10]="selectedSkill === item"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+
+            <span class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 
+                         px-2 py-1 rounded-md shadow-lg
+                         text-white bg-gray-900/90 text-xs font-semibold whitespace-nowrap
+                         opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                         pointer-events-none z-20">
+                {{ item.skill }}
+            </span>
+
+            <img [src]="item.icon" [alt]="item.skill" class="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+
+        </div>
+        }
+
     </div>
-  </div>
+</div>
+
+    </div>
 </section>
 
 <section class="px-8 lg:px-60 mb-24" id="3">
-  <h1 class="text-3xl text-white font-bold mb-6">Portfolio</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <div *ngFor="let project of projects"
-         class="rounded-2xl overflow-hidden shadow-lg"
-         style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255, 255, 255, 0.03) 100%); backdrop-filter: blur(8px); box-shadow: 0 4px 24px rgba(41, 7, 51, 0.08);">
-      <img [src]="project.image" [alt]="project.title" class="w-full h-48 object-cover" />
-      <div class="p-6">
-        <h2 class="text-xl text-white font-bold mb-2">{{ project.title }}</h2>
-        <p class="text-gray-300 mb-4">{{ project.description }}</p>
-        <a [href]="project.link" target="_blank" rel="noopener noreferrer"
-           class="inline-block bg-gradient-to-r from-[#722EFA] via-[#c084fc] to-[#a084fa] text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
-          View Project
-        </a>
-      </div>
+    <h1 class="text-3xl text-white font-bold mb-6">Portfolio</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div *ngFor="let project of projects" class="rounded-2xl overflow-hidden shadow-lg"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255, 255, 255, 0.03) 100%); backdrop-filter: blur(8px); box-shadow: 0 4px 24px rgba(41, 7, 51, 0.08);">
+            <img [src]="project.image" [alt]="project.title" class="w-full h-48 object-cover" />
+            <div class="p-6">
+                <h2 class="text-xl text-white font-bold mb-2">{{ project.title }}</h2>
+                <p class="text-gray-300 mb-4">{{ project.description }}</p>
+                <a [href]="project.link" target="_blank" rel="noopener noreferrer"
+                    class="inline-block bg-gradient-to-r from-[#722EFA] via-[#c084fc] to-[#a084fa] text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
+                    View Project
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
