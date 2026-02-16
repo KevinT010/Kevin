@@ -13,13 +13,13 @@ export class HomeComponent {
     {
       title: 'Citygis service dashboard',
       description: 'Description for Citygis service dashboard.',
-      image: 'assets/images/project1.jpg',
+      image: 'assets/images/citygis.png',
       link: 'https://example.com/project1'
     },
     {
       title: 'Opus Events',
       description: 'Description for project two.',
-      image: 'assets/images/project2.jpg',
+      image: 'assets/images/opus.png',
       link: 'https://example.com/project2'
     },
     {
