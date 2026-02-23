@@ -14,7 +14,7 @@ export class HomeComponent {
       title: 'Citygis service dashboard',
       description: 'Description for Citygis service dashboard.',
       image: 'assets/images/citygis.png',
-      link: 'https://example.com/project1'
+      link: 'https://github.com/Firey-event559/Angular-ServerDashboard'
     },
     {
       title: 'Opus Events',
@@ -40,9 +40,8 @@ export class HomeComponent {
 
   selectedSkill: any = null;
 
-  // 2. Updated Data with 3 Categories
+ 
   public skills = [
-    // --- LANGUAGES (Core Syntax) ---
     {
       type: 'language',
       icon: 'assets/images/csharp.svg',
@@ -91,8 +90,6 @@ export class HomeComponent {
       skill: 'MySQL',
       description: 'A popular open-source relational database management system.',
     },
-
-    // --- FRAMEWORKS (Libraries & Platforms) ---
     {
       type: 'framework',
       icon: 'assets/images/angular.svg',
@@ -123,8 +120,6 @@ export class HomeComponent {
       skill: 'Tailwind CSS',
       description: 'A utility-first CSS framework for creating custom designs.',
     },
-
-    // --- TOOLS (Software & Utilities) ---
     {
       type: 'tool',
       icon: 'assets/images/figma.svg',
@@ -169,7 +164,6 @@ export class HomeComponent {
     }
   ];
 
-  // 3. Filter Logic
   get filteredItems() {
     return this.skills.filter(item => item.type === this.currentTab);
   }
